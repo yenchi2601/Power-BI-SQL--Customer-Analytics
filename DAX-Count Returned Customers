@@ -1,0 +1,10 @@
+Returned Patients = 
+CALCULATE(
+    DISTINCTCOUNT(PatientReturns[patient_number]),
+    FILTER(
+        PatientReturns,
+        NOT ISBLANK(PatientReturns[NextVisit])
+    ),
+    TREATAS(VALUES(dim_date_recall[Date]), PatientReturns[recall_sent_date]),
+    TREATAS(VALUES(dim_date_visit[Date]), PatientReturns[NextVisit])
+)
