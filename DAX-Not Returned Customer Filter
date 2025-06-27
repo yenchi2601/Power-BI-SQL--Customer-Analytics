@@ -1,0 +1,24 @@
+Not Returned Patient Filter = 
+VAR MatchRecall =
+    CONTAINS(
+        VALUES(dim_date_recall[Date]),
+        dim_date_recall[Date],
+        SELECTEDVALUE(PatientReturns[recall_sent_date])
+    )
+
+VAR MatchReturn =
+    CONTAINS(
+        VALUES(dim_date_visit[Date]),
+        dim_date_visit[Date],
+        SELECTEDVALUE(PatientReturns[NextVisit])
+    )
+
+RETURN
+    IF(
+        MatchRecall &&
+        (
+            ISBLANK(SELECTEDVALUE(PatientReturns[NextVisit])) || NOT MatchReturn
+        ),
+        1,
+        0
+    )
