@@ -1,0 +1,14 @@
+% Returned Patients = 
+DIVIDE(
+    [Returned Patients],
+    [Total Recall Patients],
+    0
+)
+
+----
+% Not Returned Patients = 
+DIVIDE(
+    [Not Returned Patients],
+    [Total Recall Patients],
+    0
+)
