@@ -1,0 +1,5 @@
+Total Recall Patients = 
+CALCULATE(
+    DISTINCTCOUNT(PatientReturns[patient_number]),
+    TREATAS(VALUES(dim_date_recall[Date]), PatientReturns[recall_sent_date])
+)
